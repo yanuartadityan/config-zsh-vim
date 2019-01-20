@@ -1,0 +1,12 @@
+spawn()
+{
+	if [  $1 = "git" ]
+	then
+		cd ~/Documents/Workspace/git	
+	elif [ $1 = "nb" ]
+	then 
+		cd ~/Documents/Workspace/notebook
+	else
+		echo "$1: not defined path"
+	fi
+}
