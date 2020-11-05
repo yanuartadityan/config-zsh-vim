@@ -1,0 +1,128 @@
+" ----------------------------------------
+" general vim improvement
+" ...make backspace works like most other apps
+set backspace=2
+" ...let vim use utf-8 encoding (better for python)
+set encoding=utf-8
+" ...tabstop at 4 spaces
+set tabstop=4
+
+" ----------------------------------------
+" general settings for the vim
+set nu
+set relativenumber
+set autoindent
+set cindent
+set mouse=a
+set nocompatible 		" required
+
+" ----------------------------------------
+" set the runtime path to include Vundle and initialise
+filetype off 			" required
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" alternatively, pass a path where Vundle should install plugins
+" call vundle#begin('~/.vim/bundle/Vundle.vim')
+
+" let Vundle manage Vundle	" required
+Plugin 'gmarik/Vundle.vim'
+" ... you complete me
+Plugin 'valloric/youcompleteme'
+" ...sidebar file explorer
+Plugin 'scrooloose/nerdtree'
+" ...commenter
+Plugin 'scrooloose/nerdcommenter'
+" ...syntax checker
+"Plugin 'scrooloose/syntastic'
+" ...code folding plugin
+Plugin 'tmhedberg/SimpylFold'
+" ...bottom bar status info
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+" ...auto bracketing
+Plugin 'delimitMate.vim'
+" ...easy motion
+Plugin 'easymotion/vim-easymotion'
+" ...multiple-cursors
+Plugin 'terryma/vim-multiple-cursors'
+" ...python specific indentation tools
+Plugin 'vim-scripts/indentpython.vim'
+" ...python specific syntax highlighter
+Plugin 'kh3phr3n/python-syntax'
+" ...ultimate snippet
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+" ...colorschemes
+Plugin 'morhetz/gruvbox'
+" ...node
+Plugin 'moll/vim-node'
+
+" all your plugins must be added before the following line
+call vundle#end() 
+" enable plugin indent again
+filetype plugin indent on 	" required
+" enable syntax on known file types
+syntax on
+
+" ----------------------------------------
+" all shortcuts
+" ...return to Normal from Insert mode
+imap jj <Esc>
+" ...Nerdtree (file browser toggle)
+map <F2> :NERDTreeToggle<CR>
+" ...UltiSnips edit
+map <F3> :UltiSnipsEdit<CR>
+" ...Python RUN
+map <F5> :!clear && python %<cr>
+" ...Leader to SPACE bar
+let mapleader = "\<Space>"
+" ...across clipboard copy paste
+vmap <leader>y :w! /tmp/cptemp<CR>
+nmap <leader>p :r! cat /tmp/cptemp<CR>
+" ...move lines up/down
+"nnoremap <leader>k :m .-2<CR>==
+"nnoremap <leader>j :m .+1<CR>==
+" ...scroll through tab
+nnoremap tt <C-w><C-w>
+nnoremap tk <C-w><C-k>
+nnoremap th <C-w><C-h>
+nnoremap tj <C-w><C-j>
+nnoremap tl <C-w><C-l>
+" ...resize split views
+nnoremap <silent> <Leader>= :exe "resize " . (winheight(0) * 5/4)<CR>
+nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 4/5)<CR>
+" ...ultisnips shortcut
+let g:UltiSnipsExpandTrigger="<leader><tab>"
+let g:UltiSnipsJumpForwardTrigger="<leader><tab>"
+let g:UltiSnipsJumpBackwardTrigger="<leader>p<tab>"
+let g:UltiSnipsSnippetDirectories = ['~/.vim/bundle/vim-snippets/UltiSnips', 'UltiSnips']
+let g:UltiSnipsEditSplit='horizontal'
+
+" ----------------------------------------
+" code specific
+" ..python
+let python_highlight_all=1
+" ----------------------------------------
+" plugin specific
+" ...always unfold default folds
+set foldlevel=99
+set foldmethod=indent
+" ...airline theme
+let g:airline_theme='gruvbox'
+" ...colorscheme
+set background=dark
+colorscheme gruvbox
+" ...nerdtree
+let g:NERDTreeWinSize=35
+" ...ycm
+let g:ycm_server_python_interpreter = ''
+" ...vim-easymotion
+nmap <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>W <Plug>(easymotion-overwin-w)
+" ...vim class/method snippet close
+imap qq <Esc><C-w><C-k> :bd <CR>
+"imap qq <C-O>: <Esc><C-w><C-k> :bd <CR>
+" ----------------------------------------
+" all help
+" simpylfold -- :help fold-commands
